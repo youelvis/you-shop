@@ -205,11 +205,32 @@ header nav ul li a:hover {
 .product-card h4 {
     font-size: 1.2em;
     margin: 10px 0;
+    color: #333;
+}
+
+.product-card .description {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.5;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.product-card .utility {
+    font-size: 0.85em;
+    color: #28a745;
+    background-color: #f0f9f4;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 10px 0;
+    line-height: 1.6;
+    text-align: left;
 }
 
 .product-card .price {
     color: #e63946;
     font-weight: bold;
+    font-size: 1.1em;
     margin: 10px 0;
 }
 
@@ -220,10 +241,13 @@ header nav ul li a:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    font-weight: bold;
 }
 
 .product-card button:hover {
-    background-color: #555;
+    background-color: #e63946;
 }
 
 /* Pied de page */

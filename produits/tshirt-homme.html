@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>T-shirt Homme - Boutique YOU</title>
+	<link rel="stylesheet" href="../style.css">
+	<style>
+		.product-detail {
+			max-width: 1200px;
+			margin: 40px auto;
+			padding: 20px;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 40px;
+		}
+		.product-images {
+			display: grid;
+			gap: 15px;
+		}
+		.main-image {
+			width: 100%;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+		.thumbnail-images {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+		}
+		.thumbnail-images img {
+			width: 100%;
+			height: 120px;
+			object-fit: cover;
+			border-radius: 5px;
+			cursor: pointer;
+			border: 2px solid transparent;
+			transition: border 0.3s ease;
+		}
+		.thumbnail-images img:hover,
+		.thumbnail-images img.active {
+			border-color: #e63946;
+		}
+		.product-info h1 {
+			font-size: 2em;
+			margin-bottom: 10px;
+			color: #333;
+		}
+		.product-info .price {
+			font-size: 1.8em;
+			color: #e63946;
+			font-weight: bold;
+			margin: 20px 0;
+		}
+		.product-info .description {
+			line-height: 1.8;
+			color: #666;
+			margin: 20px 0;
+		}
+		.product-options {
+			margin: 30px 0;
+		}
+		.product-options label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 10px;
+			color: #333;
+		}
+		.color-options, .size-options {
+			display: flex;
+			gap: 10px;
+			margin-bottom: 20px;
+		}
+		.color-option {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			cursor: pointer;
+			border: 3px solid transparent;
+			transition: border 0.3s ease;
+		}
+		.color-option:hover,
+		.color-option.selected {
+			border-color: #333;
+		}
+		.size-option {
+			padding: 10px 20px;
+			border: 2px solid #ddd;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		.size-option:hover,
+		.size-option.selected {
+			border-color: #e63946;
+			background-color: #e63946;
+			color: white;
+		}
+		.add-to-cart-btn {
+			width: 100%;
+			padding: 15px;
+			background-color: #e63946;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 1.2em;
+			font-weight: bold;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		.add-to-cart-btn:hover {
+			background-color: #d62839;
+		}
+		.features {
+			background-color: #f9f9f9;
+			padding: 20px;
+			border-radius: 8px;
+			margin: 20px 0;
+		}
+		.features ul {
+			list-style: none;
+			padding: 0;
+		}
+		.features li {
+			padding: 8px 0;
+			color: #666;
+		}
+		.features li:before {
+			content: "✓ ";
+			color: #28a745;
+			font-weight: bold;
+			margin-right: 10px;
+		}
+		@media (max-width: 768px) {
+			.product-detail {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- En-tête -->
+	<header>
+		<div class="logo">
+			<a href="../index.html">Accueil</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Accueil</a></li>
+				<li><a href="../vetements.html">Vêtements</a></li>
+				<li><a href="../chaussures.html">Chaussures</a></li>
+				<li><a href="../accessoires.html">Accessoires</a></li>
+				<li><a href="../electromenager.html">Électroménager</a></li>
+				<li><a href="#">Panier</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Détails du produit -->
+	<div class="product-detail">
+		<div class="product-images">
+			<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="T-shirt Homme" class="main-image" id="mainImage">
+			<div class="thumbnail-images">
+				<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200" alt="Vue 1" class="active" onclick="changeImage(this)">
+				<img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=200" alt="Vue 2" onclick="changeImage(this)">
+				<img src="https://images.unsplash.com/photo-1622445275576-721325763afe?w=200" alt="Vue 3" onclick="changeImage(this)">
+				<img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=200" alt="Vue 4" onclick="changeImage(this)">
+			</div>
+		</div>
+
+		<div class="product-info">
+			<h1>T-shirt Homme</h1>
+			<p class="price">12,99 € / 8 520 FCFA</p>
+			
+			<div class="description">
+				<p>T-shirt en coton 100% confortable et respirant. Parfait pour un style décontracté au quotidien. Disponible en plusieurs coloris.</p>
+				<p>Ce t-shirt de qualité supérieure est conçu pour offrir un confort optimal tout au long de la journée. Son tissu doux et respirant permet une excellente circulation de l'air, idéal pour toutes les saisons.</p>
+			</div>
+
+			<div class="features">
+				<h3>Caractéristiques :</h3>
+				<ul>
+					<li>Composition : 100% coton</li>
+					<li>Coupe régulière pour un ajustement confortable</li>
+					<li>Col rond renforcé</li>
+					<li>Coutures doubles pour plus de durabilité</li>
+					<li>Lavable en machine à 30°C</li>
+					<li>Résistant au rétrécissement</li>
+				</ul>
+			</div>
+
+			<div class="product-options">
+				<label>Couleur :</label>
+				<div class="color-options">
+					<div class="color-option selected" style="background-color: #000;" onclick="selectColor(this)"></div>
+					<div class="color-option" style="background-color: #fff; border: 1px solid #ddd;" onclick="selectColor(this)"></div>
+					<div class="color-option" style="background-color: #1e3a8a;" onclick="selectColor(this)"></div>
+					<div class="color-option" style="background-color: #dc2626;" onclick="selectColor(this)"></div>
+					<div class="color-option" style="background-color: #16a34a;" onclick="selectColor(this)"></div>
+				</div>
+
+				<label>Taille :</label>
+				<div class="size-options">
+					<div class="size-option" onclick="selectSize(this)">S</div>
+					<div class="size-option selected" onclick="selectSize(this)">M</div>
+					<div class="size-option" onclick="selectSize(this)">L</div>
+					<div class="size-option" onclick="selectSize(this)">XL</div>
+					<div class="size-option" onclick="selectSize(this)">XXL</div>
+				</div>
+			</div>
+
+			<button class="add-to-cart-btn" onclick="addToCart()">Ajouter au panier</button>
+		</div>
+	</div>
+
+	<!-- Pied de page -->
+	<footer>
+		<p>&copy; 2025 Boutique YOU. Tous droits réservés.</p>
+	</footer>
+
+	<script>
+		function changeImage(element) {
+			// Retirer la classe active de toutes les miniatures
+			document.querySelectorAll('.thumbnail-images img').forEach(img => {
+				img.classList.remove('active');
+			});
+			// Ajouter la classe active à la miniature cliquée
+			element.classList.add('active');
+			// Changer l'image principale
+			const mainImage = document.getElementById('mainImage');
+			mainImage.src = element.src.replace('w=200', 'w=600');
+		}
+
+		function selectColor(element) {
+			document.querySelectorAll('.color-option').forEach(opt => {
+				opt.classList.remove('selected');
+			});
+			element.classList.add('selected');
+		}
+
+		function selectSize(element) {
+			document.querySelectorAll('.size-option').forEach(opt => {
+				opt.classList.remove('selected');
+			});
+			element.classList.add('selected');
+		}
+
+		function addToCart() {
+			const color = document.querySelector('.color-option.selected');
+			const size = document.querySelector('.size-option.selected');
+			alert('Produit ajouté au panier !\nTaille : ' + size.textContent + '\nPrix : 12,99 € / 8 520 FCFA');
+		}
+	</script>
+</body>
+</html>
