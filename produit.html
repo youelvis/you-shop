@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Découvrez la fiche détaillée de chaque produit Boutique YOU avec photos, prix et avantages.">
+	<title>Fiche produit - Boutique YOU</title>
+	<link rel="icon" type="image/jpeg" href="you logo.jpg">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="index.html">
+				<img src="you logo.jpg" alt="Logo YOU">
+			</a>
+		</div>
+		<button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+			<span class="sr-only">Ouvrir le menu</span>
+			☰
+		</button>
+		<nav id="main-menu">
+			<ul>
+				<li><a href="index.html">Accueil</a></li>
+				<li><a href="vetements.html">Vêtements</a></li>
+				<li><a href="chaussures.html">Chaussures</a></li>
+				<li><a href="accessoires.html">Accessoires</a></li>
+				<li><a href="electromenager.html">Électroménager</a></li>
+				<li><a href="panier.html">Panier</a></li>
+				<li><a href="mailto:contact@you.com?subject=Contact%20Boutique%20YOU">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="product-detail-container" id="product-detail">
+			<div class="product-image">
+				<img id="product-image" src="" alt="Produit Boutique YOU" loading="lazy" decoding="async">
+			</div>
+			<div class="product-info">
+				<p class="product-category">
+					<a id="product-category-link" href="#">Catégorie</a>
+				</p>
+				<h1 class="product-title" id="product-title">Produit Boutique YOU</h1>
+				<div class="price-section">
+					<span class="product-price" id="price-eur"></span>
+					<span class="product-price-local" id="price-local"></span>
+				</div>
+				<p class="long-description" id="product-description"></p>
+				<div class="features" id="product-features"></div>
+				<div class="options">
+					<div class="options-size" id="size-wrapper">
+						<label for="size">Taille</label>
+						<select id="size"></select>
+					</div>
+					<div class="options-quantity">
+						<label for="quantity">Quantité</label>
+						<input type="number" id="quantity" value="1" min="1">
+					</div>
+				</div>
+				<a class="add-to-cart-btn" id="add-to-cart-link" href="panier.html">Ajouter au panier</a>
+				<p class="shipping-note">Livraison offerte dès 60 € d'achat · Retours gratuits sous 30 jours.</p>
+			</div>
+		</section>
+
+		<section class="featured-products">
+			<h2>Produits similaires</h2>
+			<div class="products-grid" id="related-products"></div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="footer-contact">
+			<h4>Besoin d'aide ?</h4>
+			<p>Téléphone : +33 1 23 45 67 89</p>
+			<p>Email : contact@you.com</p>
+		</div>
+		<p>&copy; 2025 Boutique YOU. Tous droits réservés.</p>
+	</footer>
+
+	<script>
+		const products = {
+			"tshirt-homme": {
+				slug: "tshirt-homme",
+				title: "T-shirt Homme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900",
+				description: "T-shirt en coton 100% confortable et respirant. Parfait pour un style décontracté au quotidien.",
+				features: ["Confort optimal", "Facile d'entretien", "Polyvalent"],
+				priceEuro: "12,99 €",
+				priceLocal: "8 520 FCFA"
+			},
+			"robe-femme": {
+				slug: "robe-femme",
+				title: "Robe Femme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=900",
+				description: "Robe élégante et fluide, idéale pour les occasions spéciales. Coupe flatteuse qui s'adapte à toutes les morphologies.",
+				features: ["Élégante", "Coupe flatteuse", "Parfaite pour soirées"],
+				priceEuro: "24,99 €",
+				priceLocal: "16 390 FCFA"
+			},
+			"jean-homme": {
+				slug: "jean-homme",
+				title: "Jean Homme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=900",
+				description: "Jean résistant en denim de qualité supérieure. Coupe moderne slim fit pour un look contemporain.",
+				features: ["Durable", "Coupe moderne", "Polyvalent"],
+				priceEuro: "29,99 €",
+				priceLocal: "19 670 FCFA"
+			},
+			"chemisier-femme": {
+				slug: "chemisier-femme",
+				title: "Chemisier Femme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1525450824786-227cbef70703?w=900",
+				description: "Chemisier chic et professionnel en tissu léger. Parfait pour le bureau ou les rencontres formelles.",
+				features: ["Style professionnel", "Tissu respirant", "Entretien facile"],
+				priceEuro: "19,99 €",
+				priceLocal: "13 110 FCFA"
+			},
+			"pantalon-homme": {
+				slug: "pantalon-homme",
+				title: "Pantalon Homme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=900",
+				description: "Pantalon élégant pour le travail ou les sorties. Tissu anti-froissement avec coupe ajustée.",
+				features: ["Anti-froissement", "Élégant", "Confortable"],
+				priceEuro: "34,99 €",
+				priceLocal: "22 950 FCFA"
+			},
+			"jupe-femme": {
+				slug: "jupe-femme",
+				title: "Jupe Femme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=900",
+				description: "Jupe mi-longue tendance et polyvalente. Se porte en toute saison.",
+				features: ["Tendance", "Polyvalente", "Toute saison"],
+				priceEuro: "17,99 €",
+				priceLocal: "11 800 FCFA"
+			},
+			"pull-homme": {
+				slug: "pull-homme",
+				title: "Pull Homme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=900",
+				description: "Pull chaud en maille douce, idéal pour l'hiver. Conserve la chaleur tout en restant élégant.",
+				features: ["Chaleur garantie", "Doux au toucher", "Qualité durable"],
+				priceEuro: "27,99 €",
+				priceLocal: "18 350 FCFA"
+			},
+			"blouse-femme": {
+				slug: "blouse-femme",
+				title: "Blouse Femme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=900",
+				description: "Blouse féminine et légère avec détails raffinés. Parfaite pour un look élégant et confortable.",
+				features: ["Féminine", "Légère", "Élégante"],
+				priceEuro: "22,99 €",
+				priceLocal: "15 080 FCFA"
+			},
+			"veste-homme": {
+				slug: "veste-homme",
+				title: "Veste Homme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=900",
+				description: "Veste casual élégante pour mi-saison. Coupe ajustée et finitions soignées.",
+				features: ["Élégante", "Mi-saison", "Coupe ajustée"],
+				priceEuro: "49,99 €",
+				priceLocal: "32 790 FCFA"
+			},
+			"cardigan-femme": {
+				slug: "cardigan-femme",
+				title: "Cardigan Femme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=900",
+				description: "Cardigan confortable en tricot doux. Parfait pour se détendre ou pour un look décontracté.",
+				features: ["Confortable", "Doux", "Polyvalent"],
+				priceEuro: "32,99 €",
+				priceLocal: "21 640 FCFA"
+			},
+			"short-homme": {
+				slug: "short-homme",
+				title: "Short Homme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1598522325074-042db73aa4e6?w=900",
+				description: "Short d'été en coton léger. Parfait pour les journées chaudes et les activités en plein air.",
+				features: ["Léger", "Respirant", "Confortable"],
+				priceEuro: "18,99 €",
+				priceLocal: "12 450 FCFA"
+			},
+			"robe-dete-femme": {
+				slug: "robe-dete-femme",
+				title: "Robe d'été Femme",
+				category: "Vêtements",
+				categoryUrl: "vetements.html",
+				image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=900",
+				description: "Robe légère et colorée pour l'été. Tissu fluide et respirant pour un confort maximal.",
+				features: ["Légère", "Colorée", "Respirante"],
+				priceEuro: "28,99 €",
+				priceLocal: "19 020 FCFA"
+			},
+			"baskets-homme": {
+				slug: "baskets-homme",
+				title: "Baskets Homme",
+				category: "Chaussures",
+				categoryUrl: "chaussures.html",
+				image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900",
+				description: "Baskets sportives modernes avec semelle amortissante. Parfaites pour le sport ou un look casual.",
+				features: ["Confort maximal", "Respirantes", "Sport & casual"],
+				priceEuro: "34,99 €",
+				priceLocal: "22 950 FCFA"
+			},
+			"escarpins-femme": {
+				slug: "escarpins-femme",
+				title: "Escarpins Femme",
+				category: "Chaussures",
+				categoryUrl: "chaussures.html",
+				image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=900",
+				description: "Escarpins élégants à talon pour un look professionnel. Bout pointu et finition soignée.",
+				features: ["Élégance", "Professionnel", "Confortable"],
+				priceEuro: "39,99 €",
+				priceLocal: "26 230 FCFA"
+			},
+			"sandales-homme": {
+				slug: "sandales-homme",
+				title: "Sandales Homme",
+				category: "Chaussures",
+				categoryUrl: "chaussures.html",
+				image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=900",
+				description: "Sandales confortables pour l'été. Semelle antidérapante et sangles ajustables.",
+				features: ["Confort estival", "Antidérapantes", "Ajustables"],
+				priceEuro: "19,99 €",
+				priceLocal: "13 110 FCFA"
+			},
+			"bottines-femme": {
+				slug: "bottines-femme",
+				title: "Bottines Femme",
+				category: "Chaussures",
+				categoryUrl: "chaussures.html",
+				image: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=900",
+				description: "Bottines tendance en cuir synthétique. Design moderne avec fermeture éclair.",
+				features: ["Tendance", "Chaudes", "Faciles à enfiler"],
+				priceEuro: "44,99 €",
+				priceLocal: "29 510 FCFA"
+			},
+			"montre-homme": {
+				slug: "montre-homme",
+				title: "Montre Homme",
+				category: "Accessoires",
+				categoryUrl: "accessoires.html",
+				image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=900",
+				description: "Montre analogique élégante avec bracelet en acier inoxydable. Mouvement précis et résistante à l'eau.",
+				features: ["Élégante", "Résistante à l'eau", "Précise"],
+				priceEuro: "49,99 €",
+				priceLocal: "32 790 FCFA"
+			},
+			"sac-a-main-femme": {
+				slug: "sac-a-main-femme",
+				title: "Sac à main Femme",
+				category: "Accessoires",
+				categoryUrl: "accessoires.html",
+				image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=900",
+				description: "Sac à main spacieux et élégant en cuir synthétique. Plusieurs compartiments pour une organisation optimale.",
+				features: ["Spacieux", "Bien organisé", "Style intemporel"],
+				priceEuro: "34,99 €",
+				priceLocal: "22 950 FCFA"
+			},
+			"ceinture-homme": {
+				slug: "ceinture-homme",
+				title: "Ceinture Homme",
+				category: "Accessoires",
+				categoryUrl: "accessoires.html",
+				image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=900",
+				description: "Ceinture en cuir véritable avec boucle classique. Réglable et durable pour un usage quotidien.",
+				features: ["Cuir véritable", "Durable", "Réglable"],
+				priceEuro: "14,99 €",
+				priceLocal: "9 830 FCFA"
+			},
+			"bijoux-femme": {
+				slug: "bijoux-femme",
+				title: "Bijoux Femme",
+				category: "Accessoires",
+				categoryUrl: "accessoires.html",
+				image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=900",
+				description: "Ensemble de bijoux fantaisie comprenant collier et boucles d'oreilles. Design raffiné et hypoallergénique.",
+				features: ["Élégants", "Hypoallergéniques", "Ensemble complet"],
+				priceEuro: "24,99 €",
+				priceLocal: "16 390 FCFA"
+			},
+			"mixeur": {
+				slug: "mixeur",
+				title: "Mixeur",
+				category: "Électroménager",
+				categoryUrl: "electromenager.html",
+				image: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=900",
+				description: "Mixeur puissant 500W avec plusieurs vitesses. Idéal pour smoothies, soupes et sauces.",
+				features: ["500W puissant", "Multi-vitesses", "Facile à nettoyer"],
+				priceEuro: "29,99 €",
+				priceLocal: "19 670 FCFA"
+			},
+			"cafetiere": {
+				slug: "cafetiere",
+				title: "Cafetière",
+				category: "Électroménager",
+				categoryUrl: "electromenager.html",
+				image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900",
+				description: "Cafetière électrique 12 tasses avec système anti-goutte et maintien au chaud.",
+				features: ["12 tasses", "Maintien au chaud", "Anti-goutte"],
+				priceEuro: "39,99 €",
+				priceLocal: "26 230 FCFA"
+			},
+			"fer-a-repasser": {
+				slug: "fer-a-repasser",
+				title: "Fer à repasser",
+				category: "Électroménager",
+				categoryUrl: "electromenager.html",
+				image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900",
+				description: "Fer à repasser vapeur avec semelle céramique. Chauffe rapide et glisse parfaitement.",
+				features: ["Vapeur puissante", "Semelle céramique", "Anticalcaire"],
+				priceEuro: "24,99 €",
+				priceLocal: "16 390 FCFA"
+			},
+			"grille-pain": {
+				slug: "grille-pain",
+				title: "Grille-pain",
+				category: "Électroménager",
+				categoryUrl: "electromenager.html",
+				image: "https://images.unsplash.com/photo-1598518619776-eae3f8a34eac?w=900",
+				description: "Grille-pain 2 tranches avec 6 niveaux de dorage. Fonction décongélation et réchauffage.",
+				features: ["6 niveaux", "Décongélation", "Facile à nettoyer"],
+				priceEuro: "19,99 €",
+				priceLocal: "13 110 FCFA"
+			}
+		};
+
+		const sizeCategories = ["Vêtements", "Chaussures"];
+		const defaultSizes = ["XS", "S", "M", "L", "XL", "XXL"];
+
+		const params = new URLSearchParams(window.location.search);
+		const slug = params.get('slug');
+		const product = products[slug] || Object.values(products)[0];
+
+		document.title = `${product.title} - Boutique YOU`;
+		const imageEl = document.getElementById('product-image');
+		imageEl.src = product.image;
+		imageEl.alt = product.title;
+
+		document.getElementById('product-title').textContent = product.title;
+		const categoryLink = document.getElementById('product-category-link');
+		categoryLink.textContent = product.category;
+		categoryLink.href = product.categoryUrl;
+
+		document.getElementById('price-eur').textContent = product.priceEuro;
+		document.getElementById('price-local').textContent = product.priceLocal ? `/ ${product.priceLocal}` : '';
+		document.getElementById('product-description').textContent = product.description;
+
+		const featuresWrapper = document.getElementById('product-features');
+		const featureList = product.features && product.features.length ? product.features : ["Sélection Boutique YOU"];
+		featuresWrapper.innerHTML = featureList.map(feature => `<p>• ${feature}</p>`).join('');
+
+		const sizeWrapper = document.getElementById('size-wrapper');
+		const sizeSelect = document.getElementById('size');
+		if (sizeCategories.includes(product.category)) {
+			sizeSelect.innerHTML = defaultSizes.map(size => `<option value="${size.toLowerCase()}">${size}</option>`).join('');
+		} else {
+			sizeWrapper.style.display = 'none';
+		}
+
+		const relatedContainer = document.getElementById('related-products');
+		const related = Object.values(products)
+			.filter(item => item.category === product.category && item.slug !== product.slug)
+			.slice(0, 3);
+		relatedContainer.innerHTML = related.map(item => `
+			<div class="product-card">
+				<img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async">
+				<h4>${item.title}</h4>
+				<p class="price">${item.priceEuro}${item.priceLocal ? ` / ${item.priceLocal}` : ''}</p>
+				<a class="product-cta" href="produit.html?slug=${item.slug}">Voir les options</a>
+			</div>
+		`).join('');
+
+		const menuToggle = document.querySelector('.menu-toggle');
+		const nav = document.querySelector('#main-menu');
+		if (menuToggle && nav) {
+			menuToggle.addEventListener('click', () => {
+				const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+				menuToggle.setAttribute('aria-expanded', (!expanded).toString());
+				nav.classList.toggle('is-open');
+			});
+		}
+	</script>
+</body>
+</html>

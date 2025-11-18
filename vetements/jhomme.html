@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Fiche produit T-shirt Homme - coton 100% respirant, disponible en plusieurs tailles et coloris.">
+	<meta property="og:title" content="Boutique YOU - T-shirt Homme">
+	<meta property="og:description" content="Découvrez le T-shirt Homme idéal pour un look décontracté et confortable.">
+	<meta property="og:type" content="product">
+	<meta property="og:image" content="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
+	<title>T-shirt Homme - Boutique YOU</title>
+	<link rel="icon" type="image/jpeg" href="../you logo.jpg">
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="../index.html">Accueil</a>
+		</div>
+		<button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+			<span class="sr-only">Ouvrir le menu</span>
+			☰
+		</button>
+		<nav id="main-menu">
+			<ul>
+				<li><a href="../index.html">Accueil</a></li>
+				<li><a href="../vetements.html" aria-current="page">Vêtements</a></li>
+				<li><a href="../chaussures.html">Chaussures</a></li>
+				<li><a href="../accessoires.html">Accessoires</a></li>
+				<li><a href="../electromenager.html">Électroménager</a></li>
+				<li><a href="../panier.html">Panier</a></li>
+				<li><a href="mailto:contact@you.com?subject=Contact%20Boutique%20YOU">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<section class="product-detail-container">
+		<div class="product-image">
+			<img src="https:https://images.unsplash.com/photo-1542272604-787c3835535d?w=300" alt="jean- Homme coton" loading="lazy" decoding="async">
+		</div>900
+		<div class="product-info">
+			<p class="product-category">Vêtements &gt; Hauts</p>
+			<h1 class="product-title">Jean Homme 100% coton</h1>
+			<div class="price-section">
+				<span class="product-price">29,99 €</span>
+				<span class="product-price-local">19 670 FCFA</span>
+			</div>
+			<p class="long-description">
+				Ce t-shirt homme en coton peigné offre douceur, respirabilité et durabilité. Sa coupe droite s'adapte à toutes les morphologies
+				et se combine facilement avec un jean ou un chino pour un style casual maîtrisé.
+			</p>
+			<div class="features">
+				<p>• 100% coton certifié OEKO-TEX</p>
+				<p>• Grammage 180 g/m² pour une tenue impeccable</p>
+				<p>• Disponible en 5 coloris (blanc, noir, bleu marine, vert sauge, terracotta)</p>
+				<p>• Col rond renforcé et coutures double aiguille</p>
+			</div>
+			<div class="options">
+				<label for="size">Taille</label>
+				<select id="size" name="size">
+					<option value="s">S</option>
+					<option value="m">M</option>
+					<option value="l">L</option>
+					<option value="xl">XL</option>
+					<option value="xxl">XXL</option>
+				</select>
+				<label for="quantity">Quantité</label>
+				<input type="number" id="quantity" name="quantity" min="1" value="1">
+			</div>
+			<a class="add-to-cart-btn" href="../panier.html">Ajouter au panier</a>
+			<p class="shipping-note">Livraison offerte dès 50 € d'achat · Retours gratuits sous 30 jours.</p>
+		</div>
+	</section>
+
+	<footer>
+		<div class="footer-contact">
+			<h4>Besoin d'aide ?</h4>
+			<p>Téléphone : +225 0172819629</p>
+			<p>Email : dpascal710@gmail.com</p>
+		</div>
+		<p>&copy; 2025 Boutique YOU. Tous droits réservés.</p>
+	</footer>
+
+	<script>
+		const menuToggle = document.querySelector('.menu-toggle');
+		const nav = document.querySelector('#main-menu');
+		if (menuToggle && nav) {
+			menuToggle.addEventListener('click', () => {
+				const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+				menuToggle.setAttribute('aria-expanded', (!expanded).toString());
+				nav.classList.toggle('is-open');
+			});
+		}
+	</script>
+</body>
+</html>
