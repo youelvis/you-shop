@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Consultez le contenu de votre panier Boutique YOU avant de finaliser votre commande.">
+	<title>Panier - Boutique YOU</title>
+	<link rel="icon" type="image/jpeg" href="you logo.jpg">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="index.html">Accueil</a>
+		</div>
+		<button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+			<span class="sr-only">Ouvrir le menu</span>
+			☰
+		</button>
+		<nav id="main-menu">
+			<ul>
+				<li><a href="index.html">Accueil</a></li>
+				<li><a href="vetements.html">Vêtements</a></li>
+				<li><a href="chaussures.html">Chaussures</a></li>
+				<li><a href="accessoires.html">Accessoires</a></li>
+				<li><a href="electromenager.html">Électroménager</a></li>
+				<li><a href="panier.html" aria-current="page">Panier</a></li>
+				<li><a href="mailto:contact@you.com?subject=Contact%20Boutique%20YOU">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="cart-wrapper">
+		<section class="cart-empty">
+			<h1>Votre panier est vide</h1>
+			<p>Ajoutez un article pour commencer votre commande. Vous pouvez revenir aux catégories ci-dessous :</p>
+			<div class="cart-links">
+				<a href="vetements.html" class="product-cta">Vêtements</a>
+				<a href="chaussures.html" class="product-cta">Chaussures</a>
+				<a href="accessoires.html" class="product-cta">Accessoires</a>
+				<a href="electromenager.html" class="product-cta">Électroménager</a>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; 2025 Boutique YOU. Tous droits réservés.</p>
+	</footer>
+
+	<script>
+		const menuToggle = document.querySelector('.menu-toggle');
+		const nav = document.querySelector('#main-menu');
+		if (menuToggle && nav) {
+			menuToggle.addEventListener('click', () => {
+				const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+				menuToggle.setAttribute('aria-expanded', (!expanded).toString());
+				nav.classList.toggle('is-open');
+			});
+		}
+	</script>
+</body>
+</html>
