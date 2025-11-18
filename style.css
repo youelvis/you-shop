@@ -22,6 +22,10 @@ img {
     display: block;
 }
 
+site-header {
+    display: block;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

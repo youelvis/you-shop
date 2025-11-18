@@ -7,31 +7,10 @@
 	<title>Fiche produit - Boutique YOU</title>
 	<link rel="icon" type="image/jpeg" href="you logo.jpg">
 	<link rel="stylesheet" href="style.css">
+	<script src="shared-header.js" defer></script>
 </head>
 <body>
-	<header>
-		<div class="logo">
-			<a href="index.html">
-				<img src="you logo.jpg" alt="Logo YOU">
-			</a>
-		</div>
-		<button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
-			<span class="sr-only">Ouvrir le menu</span>
-			☰
-		</button>
-		<nav id="main-menu">
-			<ul>
-				<li><a href="index.html">Accueil</a></li>
-				<li><a href="vetements.html">Vêtements</a></li>
-				<li><a href="chaussures.html">Chaussures</a></li>
-				<li><a href="accessoires.html">Accessoires</a></li>
-				<li><a href="electromenager.html">Électroménager</a></li>
-				<li><a href="panier.html">Panier</a></li>
-				<li><a href="mailto:contact@you.com?subject=Contact%20Boutique%20YOU">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
-
+	<site-header></site-header>
 	<main>
 		<section class="product-detail-container" id="product-detail">
 			<div class="product-image">
@@ -392,15 +371,6 @@
 			</div>
 		`).join('');
 
-		const menuToggle = document.querySelector('.menu-toggle');
-		const nav = document.querySelector('#main-menu');
-		if (menuToggle && nav) {
-			menuToggle.addEventListener('click', () => {
-				const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-				menuToggle.setAttribute('aria-expanded', (!expanded).toString());
-				nav.classList.toggle('is-open');
-			});
-		}
 	</script>
 </body>
 </html>
