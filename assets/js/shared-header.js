@@ -5,11 +5,11 @@
 
 	const navItems = [
 		{ label: 'Accueil', path: 'index.html' },
-		{ label: 'Vêtements', path: 'vetements.html' },
-		{ label: 'Chaussures', path: 'chaussures.html' },
-		{ label: 'Accessoires', path: 'accessoires.html' },
-		{ label: 'Électroménager', path: 'electromenager.html' },
-		{ label: 'Panier', path: 'panier.html', highlight: true },
+		{ label: 'Vêtements', path: 'pages/categories/vetements.html' },
+		{ label: 'Chaussures', path: 'pages/categories/chaussures.html' },
+		{ label: 'Accessoires', path: 'pages/categories/accessoires.html' },
+		{ label: 'Électroménager', path: 'pages/categories/electromenager.html' },
+		{ label: 'Panier', path: 'pages/cart.html', highlight: true },
 		{ label: 'Contact', path: 'mailto:contact@you.com?subject=Contact%20Boutique%20YOU', external: true }
 	];
 
@@ -37,7 +37,7 @@
 
 		render() {
 			const logoHref = resolveHref('index.html', false);
-			const logoSrc = new URL('you logo.jpg', baseUrl).href;
+			const logoSrc = new URL('../images/you-logo.jpg', baseUrl).href;
 
 			const navLinks = navItems.map(item => {
 				const href = resolveHref(item.path, item.external);
