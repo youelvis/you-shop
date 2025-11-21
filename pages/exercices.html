@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Liste des exercices enregistr&eacute;s dans le dossier Exercice avec acc&egrave;s direct aux fichiers HTML.">
+	<meta property="og:title" content="Boutique YOU - Exercices">
+	<meta property="og:description" content="Acc&eacute;dez rapidement aux fichiers d'exercices HTML du dossier Exercice.">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="../assets/images/you-logo.jpg">
+	<meta property="og:url" content="pages/exercices.html">
+	<title>Exercices - Boutique YOU</title>
+	<link rel="icon" type="image/jpeg" href="../assets/images/you-logo.jpg">
+	<link rel="stylesheet" href="../assets/css/style.css">
+	<script src="../assets/js/shared-header.js" defer></script>
+</head>
+<body>
+	<site-header></site-header>
+	<main class="exercises-page">
+		<section class="exercises-hero">
+			<p class="eyebrow">Espace formation</p>
+			<h1>Liste des exercices HTML</h1>
+			<p>
+				Consultez ci-dessous tous les fichiers d&#39;exercices pr&eacute;sents dans le dossier
+				<strong>Exercice</strong>. Chaque carte ouvre directement le fichier source pour un acc&egrave;s rapide.
+			</p>
+			<div class="exercises-meta">
+				<span class="exercise-count" id="exercise-count"></span>
+				<a class="exercise-folder-link" href="../Exercice/" target="_blank" rel="noopener noreferrer">
+					Ouvrir le dossier Exercice
+				</a>
+			</div>
+		</section>
+
+		<section aria-labelledby="exercise-list-title">
+			<h2 id="exercise-list-title" class="sr-only">Exercices disponibles</h2>
+			<div class="exercise-grid" id="exercise-list" aria-live="polite"></div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="footer-contact">
+			<h4>Contactez-nous</h4>
+			<p>Adresse : 12 BP 94 Abidjan 12 , C&ocirc;te d&#39;Ivoire</p>
+			<p>T&eacute;l&eacute;phone : +225 01 72 81 96 29</p>
+			<p>Email : dpascal710@gmail.com</p>
+		</div>
+		<div class="footer-social">
+			<h4>Suivez-nous</h4>
+			<a href="#" title="Facebook">Facebook</a>
+			<a href="#" title="Instagram">Instagram</a>
+			<a href="#" title="Twitter">Twitter</a>
+		</div>
+		<p>&copy; 2025 Boutique YOU. Tous droits r&eacute;serv&eacute;s.</p>
+	</footer>
+
+	<script type="application/json" id="exercises-data">
+	[
+		{
+			"title": "Exercice 5",
+			"file": "Exercice5.html",
+			"category": "Tableaux HTML",
+			"description": "Tableau de joueurs pour travailler rowspan et colspan.",
+			"focus": "Structure de tableau"
+		},
+		{
+			"title": "Exercice 6",
+			"file": "Exercice6.html",
+			"category": "Tableaux HTML",
+			"description": "Tableau stylise avec fonds et cellules colorees.",
+			"focus": "Attributs HTML"
+		},
+		{
+			"title": "Exercice 7",
+			"file": "Exercice7.html",
+			"category": "Tableaux HTML",
+			"description": "Esquisse de tableau pour manipuler les balises de base.",
+			"focus": "Mise en place"
+		},
+		{
+			"title": "Formulaire simple",
+			"file": "form.html",
+			"category": "Formulaires HTML",
+			"description": "Champs essentiels : texte, email, mot de passe, date et envoi.",
+			"focus": "Balises de formulaire"
+		}
+	]
+	</script>
+	<script>
+	(() => {
+		const dataElement = document.getElementById('exercises-data');
+		const listElement = document.getElementById('exercise-list');
+		const countElement = document.getElementById('exercise-count');
+		const basePath = '../Exercice/';
+		const baseUrl = new URL(basePath, window.location.href);
+		const fallbackMessage = '<p class="exercise-empty">Aucun exercice n&#39;est disponible pour le moment.</p>';
+
+		if (!listElement) {
+			return;
+		}
+
+		const formatTitle = (filename = '') => {
+			if (!filename) {
+				return 'Exercice';
+			}
+			return filename
+				.replace(/\.[^.]+$/, '')
+				.replace(/[-_]/g, ' ')
+				.replace(/\s+/g, ' ')
+				.trim()
+				.replace(/\b\w/g, char => char.toUpperCase()) || 'Exercice';
+		};
+
+		const buildHints = (filename = '') => {
+			const lower = filename.toLowerCase();
+			if (lower.includes('form')) {
+				return {
+					category: 'Formulaires HTML',
+					focus: 'Champs et validations',
+					description: 'Exercice autour des champs de formulaire et de l&#39;envoi de donn&eacute;es.'
+				};
+			}
+			if (lower.includes('table') || lower.includes('exercice')) {
+				return {
+					category: 'Tableaux HTML',
+					focus: 'Structure et fusion de cellules',
+					description: 'Manipulation de tableaux, de lignes et de cellules HTML.'
+				};
+			}
+			return {
+				category: 'HTML',
+				focus: 'Balises de base',
+				description: 'Exercice g&eacute;n&eacute;ral autour des balises HTML essentielles.'
+			};
+		};
+
+		const createCard = (item) => {
+			const metaItems = [
+				item.fileName ? `Fichier : ${item.fileName}` : '',
+				item.focus ? `Focus : ${item.focus}` : ''
+			].filter(Boolean).map(value => `<span>${value}</span>`).join('');
+			const href = item.href || '#';
+
+			return `
+				<article class="exercise-card">
+					<p class="exercise-card__eyebrow">${item.category || 'HTML'}</p>
+					<h3>${item.title || 'Exercice'}</h3>
+					<p class="exercise-card__description">${item.description || ''}</p>
+					<div class="exercise-card__meta">${metaItems}</div>
+					<a class="exercise-card__link" href="${href}" target="_blank" rel="noopener noreferrer">
+						Ouvrir le fichier
+					</a>
+				</article>
+			`;
+		};
+
+		const renderExercises = (items = []) => {
+			if (!items.length) {
+				listElement.innerHTML = fallbackMessage;
+				if (countElement) {
+					countElement.textContent = '0 exercice disponible';
+				}
+				return;
+			}
+
+			listElement.innerHTML = items.map(createCard).join('');
+			if (countElement) {
+				const plural = items.length > 1 ? 's' : '';
+				countElement.textContent = `${items.length} exercice${plural} disponible${plural}`;
+			}
+		};
+
+		const parseManualData = () => {
+			if (!dataElement) {
+				return [];
+			}
+			try {
+				const parsed = JSON.parse(dataElement.textContent.trim());
+				if (!Array.isArray(parsed)) {
+					return [];
+				}
+				return parsed.map(entry => {
+					const hints = buildHints(entry.file || '');
+					return {
+						title: entry.title || formatTitle(entry.file),
+						fileName: entry.file || '',
+						category: entry.category || hints.category,
+						focus: entry.focus || hints.focus,
+						description: entry.description || hints.description,
+						href: entry.file ? new URL(entry.file, baseUrl).href : '#'
+					};
+				});
+			} catch (error) {
+				return [];
+			}
+		};
+
+		const discoverFromDirectory = async () => {
+			const requestUrl = `${baseUrl.href}?listing=${Date.now()}`;
+			const response = await fetch(requestUrl, {
+				headers: {
+					'Accept': 'text/html, text/plain;q=0.9,*/*;q=0.1'
+				}
+			});
+
+			if (!response.ok) {
+				throw new Error('Impossible d&#39;acc&eacute;der au dossier');
+			}
+
+			const text = await response.text();
+			const matches = [...text.matchAll(/href=["']([^"']+\.html?)["']/gi)];
+			const seen = new Set();
+			const items = matches.map(match => {
+				let raw = decodeURIComponent(match[1] || '').split('?')[0].trim();
+				if (!raw) {
+					return null;
+				}
+
+				raw = raw.replace(/^\.\/|^\//, '');
+				const segments = raw.split('/');
+				const fileName = segments.pop();
+				if (!fileName || seen.has(fileName.toLowerCase())) {
+					return null;
+				}
+				seen.add(fileName.toLowerCase());
+
+				const hints = buildHints(fileName);
+				return {
+					title: formatTitle(fileName),
+					fileName,
+					category: hints.category,
+					focus: hints.focus,
+					description: hints.description,
+					href: new URL(fileName, baseUrl).href
+				};
+			}).filter(Boolean);
+
+			return items;
+		};
+
+		const manualItems = parseManualData();
+
+		const init = async () => {
+			try {
+				const autoItems = await discoverFromDirectory();
+				if (autoItems.length) {
+					renderExercises(autoItems);
+					return;
+				}
+			} catch (error) {
+				// Si la lecture du dossier est impossible, on bascule sur les donn&eacute;es manuelles.
+			}
+			renderExercises(manualItems);
+		};
+
+		init();
+	})();
+	</script>
+</body>
+</html>
